@@ -1,8 +1,8 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-var numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 var specialChars = ['!', '@', '$', '%', '^', '&', '*'];
+var numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 var lowerLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var upperLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
@@ -22,8 +22,14 @@ var getCharTypes = function() {
   return charTypes;
 };
 
+var randoNum = function(min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1) + min);
+  return value;
+};
+
 // generatePassword() function
 var generatePassword = function() {
+  var genPass = [];
   var numOfChars = window.prompt('How many characters? (Must be at least 8 but no more than 128)')
   numOfChars = parseInt(numOfChars);
   // checking if input is a number and not below 8 or above 128
@@ -38,19 +44,25 @@ var generatePassword = function() {
     generatePassword();
   };
 
-  characters = getCharTypes();
-  
-  
+  // get the character types
+  charTypes = getCharTypes();
+
+  if (charTypes.special) {
+    for(i = 0; i < numOfChars; i++) {
+      temp = randoNum(1, specialChars.length);
+      genPass.unshift(specialChars[temp]);
+      console.log(genPass)
+    };
+  };
+  return genPass;
 };
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
+  passwordText.value = password.join('');
+};
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
