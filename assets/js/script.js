@@ -61,16 +61,22 @@ var generatePassword = function() {
   if (isNaN(numOfChars)) {
     alert('Must be a number.');
     generatePassword();
-  } else if (numOfChars < 8) {
+  };
+  if (numOfChars < 8) {
     alert('Must be at least 8 characters long.');
     generatePassword();
-  } else if (numOfChars > 128) {
+  };
+  if (numOfChars > 128) {
     alert('Must not be longer than 128 characters.');
     generatePassword();
   };
 
   // get the character types
   charTypes = getCharTypes();
+  debugger;
+  if (numOfChars >= 10 && charTypes.special) {
+    console.log("test");
+  }
 
   for(i = 0; i < numOfChars; i++) {
     temp = randoNum(1, charTypes.length);
