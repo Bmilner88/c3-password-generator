@@ -59,21 +59,13 @@ var generatePassword = function() {
   numOfChars = parseInt(numOfChars);
   // checking if input is a number and not below 8 or above 128
   if (isNaN(numOfChars)) {
-    alert('Must be a number.');
-    generatePassword();
-  };
-  if (numOfChars < 8) {
-    alert('Must be at least 8 characters long.');
-    generatePassword();
-  };
-  if (numOfChars > 128) {
-    alert('Must not be longer than 128 characters.');
-    generatePassword();
-  };
-
+    
+  }
+  
   // get the character types
-  charTypes = getCharTypes();
-  debugger;
+  var charTypes = getCharTypes();
+  //console.log(charTypes)
+
   if (numOfChars >= 10 && charTypes.special) {
     console.log("test");
   }
