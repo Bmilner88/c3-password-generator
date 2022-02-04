@@ -43,7 +43,7 @@ var generatePassword = function() {
   // check to make sure at least one was selected
   if(!charTypes.special && !charTypes.numeric && !charTypes.lowercase && !charTypes.uppercase) {
     window.alert('You must select at least 1 type!')
-    return getCharTypes();
+    return generatePassword();
   };
   
   // combine the character arrays into one and push required characters to genPass array
