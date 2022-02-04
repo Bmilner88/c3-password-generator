@@ -1,13 +1,13 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-var specialChars = ['!', '@', '$', '%', '^', '&', '*'];
-var numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-var lowerLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var upperLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
 // getCharTypes() function
 var getCharTypes = function() {
+  var tempChars = [];
+  var special = ['!', '@', '#', '$', '%', '^', '&', '*',  '/', '>', '<', '~'];
+  var numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+  var lowerLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  var upperLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   var charTypes = {
     special: window.confirm('Would you like to use special characters?'),
     numeric: window.confirm('Would you like to use numeric characters?'),
@@ -19,7 +19,32 @@ var getCharTypes = function() {
     window.alert('You must have at least 1 type!')
     getCharTypes();
   };
-  return charTypes;
+
+  if (charTypes.special) {
+    for (i = 0; i < special.length; i++) {
+      tempChars.push(special[i])
+    };
+  };
+
+  if (charTypes.numeric) {
+    for (i = 0; i < numbers.length; i++) {
+      tempChars.push(numbers[i])
+    };
+  };
+
+  if (charTypes.lowercase) {
+    for (i = 0; i < lowerLetters.length; i++) {
+      tempChars.push(lowerLetters[i])
+    };
+  };
+
+  if (charTypes.uppercase) {
+    for (i = 0; i < upperLetters.length; i++) {
+      tempChars.push(upperLetters[i])
+    };
+  };
+  
+  return tempChars;
 };
 
 var randoNum = function(min, max) {
@@ -47,12 +72,9 @@ var generatePassword = function() {
   // get the character types
   charTypes = getCharTypes();
 
-  if (charTypes.special) {
-    for(i = 0; i < numOfChars; i++) {
-      temp = randoNum(1, specialChars.length);
-      genPass.unshift(specialChars[temp]);
-      console.log(genPass)
-    };
+  for(i = 0; i < numOfChars; i++) {
+    temp = randoNum(1, charTypes.length);
+    genPass.push(charTypes[temp]);
   };
   return genPass;
 };
